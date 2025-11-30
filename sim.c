@@ -16,9 +16,7 @@
  * Puntero que recorre cola se mueve rápido cuando hay necesidad de páginas
  * Si hay mucha memoria libre… baja sobrecarga
  * Si la memoria física es grande mas difícil de lograrlo bien
-   Solución: agregar más punteros para elegir víctima 
-   https://youtu.be/FJMl7v_x6DI un video de apoyo 
-   */
+   Solución: agregar más punteros para elegir víctima */
 //la estructura del marco
 typedef struct {
     int marco_id;
@@ -69,7 +67,7 @@ void iniciar_sim(int nmarcos, int tamano_pag) {
     total_marcos = nmarcos;
     tamano_pagina = tamano_pag;
     
-    // Calcular bits para el desplazamiento (ej.- 4096 = 2^12 -> 12 bits)
+    // Calcular bits para el desplazamiento (ej.- 4096 = 2^12 → 12 bits)
     bits_desplazamiento = 0;
     int temp = tamano_pagina;
     while (temp > 1) {
@@ -138,6 +136,39 @@ void manejo_fallo_pag(int npagina, uint32_t *dir_fisica, int *marco_usado){
     *marco_usado = id_marco;
     actualizar_bit_r(id_marco);
 }
+
+
+void traducir_direccion(uint32_t dir_virtual, uint32_t *dir_fisica, int *npagina, int *desplazamiento, int *hit, int *marco_usado){
+    // se toma la dirección virtual y se descompone
+    uint32_t mask_offset;
+    mask_offset = 1; 
+    //con la mascara se selecciona el offset(desplazamiento dentro de la pág.)
+    for(int i = 1; i < bits_desplazamiento; i++){
+        mask_offset = (mask_offset << 1) | 1;
+    }
+    *desplazamiento = dir_virtual & mask_offset;
+    //numero de la pagina virtual
+    *npagina = dir_virtual >> bits_desplazamiento;
+
+    //Hit y fallo
+    if(tabla_paginas[*npagina].valido){
+        *hit = 1;
+        *marco_usado = tabla_paginas[*npagina].marco_asignado;
+        *dir_fisica = (*marco_usado << bits_desplazamiento) | *desplazamiento;
+        actualizar_bit_r(*marco_usado);
+    }
+    else{
+        *hit = 0;
+        /*para manejar el fallo se puede asignar un marco si es que hay uno libre,
+        sino se debe utilizar el algoritmo del reloj*/
+        manejo_fallo_pag(*npagina, dir_fisica, marco_usado);
+        *dir_fisica = (*marco_usado << bits_desplazamiento) | *desplazamiento;
+
+    }
+    
+}
+
+
 // listo
 void ejecutar_sim(const char *archivo_trace, int verbose){
     FILE *archivo = fopen(archivo_trace, "r");
@@ -155,7 +186,7 @@ void ejecutar_sim(const char *archivo_trace, int verbose){
     uint32_t direccion;
     int total_referencias = 0;
     int fallos_pagina = 0;
-    while (fscanf(archivo, "%x", &direccion) != EOF) {
+    while (fscanf(archivo, "%x", &direccion) != EOF) { 
         uint32_t dir_fisica;
         int numero_pagina, desplazamiento, hit, marco_usado;
         
@@ -182,9 +213,7 @@ void ejecutar_sim(const char *archivo_trace, int verbose){
     printf("Fallos de pagina: %d\n", fallos_pagina);
     printf("Tasa de fallos: %.2f\n", (float)fallos_pagina / total_referencias * 100);
 }
-void traducir_direccion(uint32_t dir_virtual, uint32_t *dir_fisica, int *npagina, int *desplazamiento, int *hit, int *marco_usado);
-// falta esto, que es como el nucleo del simulador, porque hay que descomponer la direccion virtual en numero de pagina y desplazamiento.
-// hay que ver en la tabla de paginas si hay hit o fallo, y ahí se actualiza el bit R o se usa la funcion de manejo de fallo respectivamente
+
 
 int main(int argc, char *argv[]) {
     if (argc < 4) {
