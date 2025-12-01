@@ -1,0 +1,15 @@
+DF = Direccion Fisica | Marco = Marco Fisico Asignado
+------------------------------------------------------------
+DV: 0x0002001a | PV:  8193 | Despl: 0x000a | FALLO | Marco:  2 | DF: 0x0000002a
+DV: 0x00020023 | PV:  8194 | Despl: 0x0003 | FALLO | Marco:  1 | DF: 0x00000013
+DV: 0x0002003f | PV:  8195 | Despl: 0x000f | FALLO | Marco:  0 | DF: 0x0000000f
+DV: 0x0002001b | PV:  8193 | Despl: 0x000b | HIT  | Marco:  2 | DF: 0x0000002b
+DV: 0x00020045 | PV:  8196 | Despl: 0x0005 | FALLO | Marco:  0 | DF: 0x00000005
+DV: 0x0002005c | PV:  8197 | Despl: 0x000c | FALLO | Marco:  1 | DF: 0x0000001c
+DV: 0x00020061 | PV:  8198 | Despl: 0x0001 | FALLO | Marco:  2 | DF: 0x00000021
+DV: 0x00020028 | PV:  8194 | Despl: 0x0008 | FALLO | Marco:  0 | DF: 0x00000008
+
+=== REPORTE FINAL ===
+Total referencias: 8
+Fallos de pagina: 7
+Tasa de fallos: 87.50
