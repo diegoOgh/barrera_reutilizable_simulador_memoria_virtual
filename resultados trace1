@@ -1,0 +1,23 @@
+Simulador inicializado con 8 marcos de 8 bytes cada uno
+Iniciando simulacion con archivo: trace1.txt
+
+=== REPORTE FINAL ===
+Total referencias: 8192
+Fallos de pagina: 8073
+Tasa de fallos: 98.55
+
+Simulador inicializado con 16 marcos de 8 bytes cada uno
+Iniciando simulacion con archivo: trace1.txt
+
+=== REPORTE FINAL ===
+Total referencias: 8192
+Fallos de pagina: 7943
+Tasa de fallos: 96.96
+
+Simulador inicializado con 32 marcos de 8 bytes cada uno
+Iniciando simulacion con archivo: trace1.txt
+
+=== REPORTE FINAL ===
+Total referencias: 8192
+Fallos de pagina: 7714
+Tasa de fallos: 94.17
