@@ -11,19 +11,19 @@
 - Diego Oyarzo Navia
 - Valentina Serón Canales  
 
-### Parte I: Barrera Reutilizable
+## Parte I: Barrera Reutilizable
 Implementación de una barrera de sincronización reutilizable usando monitores con pthreads, que permite coordinar múltiples hebras en diferentes puntos de encuentro.
 
 ## Compilación y modo de uso
 
-# Requisitos del sistema
+### Requisitos del sistema
 - **Sistema Operativo**: Linux 
 - **Compilador**: GCC (GNU Compiler Collection)
 
 `gcc -o main main.c`
 `./main`
 
-### Parte II: Simulador de Memoria Virtual  
+## Parte II: Simulador de Memoria Virtual  
 Simulador que implementa traducción de direcciones virtuales a físicas utilizando paginación simple y el algoritmo de reemplazo "Reloj" (Clock Algorithm).
 
 ## Compilación y modo de uso
