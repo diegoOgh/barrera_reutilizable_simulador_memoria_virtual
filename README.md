@@ -1,10 +1,10 @@
 # Tarea 2 - Sistemas Operativos 2025-2
-
 ### Departamento de Informática y Cs. de la Computación
 ### Facultad de Ingeniería
 ### Universidad de Concepción
 
 **Docentes**: Prof. Cecilia Hernández y Prof. Juan Felipe González
+
 **Estudiantes**:
 - Gabriel Huerta Torres  
 - Jocabed López Flores  
